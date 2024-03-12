@@ -26,13 +26,13 @@ data = yf.Ticker(stock)
 hist = data.history(period="1d", start = start_date, end = end_date)
 
 
-
-
 # just to write the Microsoft historical data in web site
 st.write(hist)
 
+# Creating a linechart
 st.subheader("Trend in closing prices")
 st.line_chart(hist['Close'])
 
+# Creating a barchart
 st.subheader("Trend in Volumes")
 st.bar_chart(hist['Volume'])
