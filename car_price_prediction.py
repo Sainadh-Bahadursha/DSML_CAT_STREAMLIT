@@ -37,7 +37,7 @@ with col1:
 with col2:
     seller_inp = st.selectbox("Enter the seller type",["Dealer","Individual","Trustmark Dealer"])
 
-# We can get validation also search for it
+# Create encode dictionary to convert input strings to respective encodings as present in model
 encode_dict = {
     "fuel_type" :{"Diesel":1,"Petrol" : 2,"CNG" : 3, "LPG" : 4, "Electric" : 5},
     "seller_type" : {"Dealer":1, "Individual" : 2, "Trustmark Dealer":3},
@@ -47,18 +47,16 @@ encode_dict = {
 # Loading the final trained ML model which was saved in the format of car_pred.pkl --> Pickle file
 def model_pred(year_inp,seller_encoded,fuel_type_encoded,transmission_encoded,engine,seats_inp):
     with open("car_pred","rb") as file:
-        model = pickle.load(file)
+        model = pickle.load(file) # Pickle is used to save and load the already created model
 
         input_features = [[year_inp,seller_encoded,130000,fuel_type_encoded,transmission_encoded,19.7,engine,46.3,seats_inp]]
-        return model.predict(input_features)
+        return model.predict(input_features) # Return the prediction for given input features
     
 
 
-if st.button("Predict"):
+if st.button("Predict"): # Button is created for the sake predicting only when pressed on button
     fuel_type_encoded = encode_dict["fuel_type"][fuel_type_inp]
     transmission_encoded = encode_dict["transmission_type"][transmission_inp]
     seller_encoded = encode_dict["seller_type"][seller_inp]
-
     second_hand_price = model_pred(year_inp,seller_encoded,fuel_type_encoded,transmission_encoded,engine,seats_inp)
-
     st.write("Predicted Price is ", str(second_hand_price))
