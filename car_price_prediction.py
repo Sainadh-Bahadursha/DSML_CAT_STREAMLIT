@@ -8,24 +8,29 @@ import datetime
 # Heading
 st.header("Car Price Prediction App")
 
+
 # Using the pandas to import the dataset
 df = pd.read_csv("car_price.csv")
+
 
 # st.dataframe can be used to print the dataset
 # st.dataframe(df)
 
 # inputs from the user
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2) # to create two columns
 with col1:
     year_inp = st.number_input("Enter the Year", min_value=1900,max_value=2024)
 with col2:
     seats_inp = st.selectbox("Enter number of seats",[4,5,7,9,11])
-    
+
+
 col1, col2 = st.columns(2)
 with col1:
     fuel_type_inp = st.selectbox("Enter the fuel type",("Diesel","Petrol","CNG","LPG","Electric"))
 with col2:
     transmission_inp = st.selectbox("Enter the transmission type",("Manual","Automatic"))
+
+
 col1, col2 = st.columns(2)
 with col1:
     engine = st.slider("Engine CC",min_value=500,max_value=5000,step=100)
