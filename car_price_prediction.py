@@ -13,6 +13,15 @@ df = pd.read_csv("car_price.csv")
 # st.dataframe can be used to print the dataset
 # st.dataframe(df)
 
+
+# inputs from the user
+
+year = st.number_input("Insert a number")
+fuel_type = st.selectbox("Enter the fuel type",("Diesel","Petrol","CNG","LPG","Electric"))
+transmission = st.selectbox("Enter the transmission type",("Manual","Automatic"))
+engine = st.slider("Engine CC",500,5000,100)
+
+
 encode_dict = {
     "fuel_type" :{"Diesel":1,"Petrol" : 2,"CNG" : 3, "LPG" : 4, "Electric" : 5},
     "seller_type" : {"Dealer":1, "Individual" : 2, "Trustmark Dealer":3},
